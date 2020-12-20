@@ -1,0 +1,12 @@
+<div class="user-list">
+  <div class="header">
+    <span class="info">Contacts</span>
+    <button [routerLink]="['add']" mat-raised-button color="primary">+ Add</button>
+  </div>
+  <div *ngFor="let user of users" >
+    <div class="user-card" (click)="delete(user.id)">
+      <span class="user-info">{{user.name}} {{user.surname}}</span>
+      <span class="user-number">{{user.phoneNumber}}</span>
+    </div>
+  </div>
+</div>

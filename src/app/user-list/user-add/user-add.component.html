@@ -1,0 +1,99 @@
+<div class="add-user">
+  <h1>{{isUpdatingUser ? 'Update' : 'Add'}} Contact</h1>
+  <form (ngSubmit)="sendUser()" [formGroup]="userAddForm">
+    <div class="form-control">
+      <mat-form-field class="example-form-field">
+        <mat-label>Name</mat-label>
+        <input matInput type="text" [(ngModel)]="name" 
+              formControlName="name"
+              id="name"
+              tabindex="1">
+        <button mat-button *ngIf="name" matSuffix mat-icon-button aria-label="Clear" (click)="name=''">
+          <mat-icon>close</mat-icon>
+        </button>
+      </mat-form-field>
+      <mat-form-field class="example-form-field">
+        <mat-label>Surname</mat-label>
+        <input matInput type="text" [(ngModel)]="surname" 
+              formControlName="surname"
+              id="surname"
+              tabindex="1">
+        <button mat-button *ngIf="surname" matSuffix mat-icon-button aria-label="Clear" (click)="surname=''">
+          <mat-icon>close</mat-icon>
+        </button>
+      </mat-form-field>
+      <mat-form-field class="example-form-field">
+        <mat-label>Phone Number</mat-label>
+        <input matInput type="text" [(ngModel)]="phoneNumber" 
+              formControlName="phoneNumber"
+              id="phoneNumber"
+              tabindex="1">
+        <button mat-button *ngIf="phoneNumber" matSuffix mat-icon-button aria-label="Clear" (click)="phoneNumber=''">
+          <mat-icon>close</mat-icon>
+        </button>
+      </mat-form-field>
+      <div *ngFor="let field of fieldsForm.controls; let i = index">
+        <mat-form-field class="example-form-field">
+          <mat-label>{{fieldType}}</mat-label>
+          <input matInput type="text" [(ngModel)]="fieldType" 
+                formControlName="fieldType"
+                id="fieldType"
+                tabindex="1">
+          <button mat-button *ngIf="fieldType" matSuffix mat-icon-button aria-label="Clear" (click)="phoneNumber=''">
+            <mat-icon>close</mat-icon>
+          </button>
+        </mat-form-field>
+      </div>
+      <div class="add-new-field">
+        <button (click)="addNewField()" class="close grey rounded" type="button" mat-raised-button color="primary">+ Add New Field</button>
+        <div *ngIf="newField" class="new-field">
+          <mat-radio-group aria-label="Select an option" class="radio-group">
+            <mat-radio-button value="fieldText" (change)="onSelectionChange('fieldText')">Text</mat-radio-button>
+            <mat-radio-button value="fieldNumber" (change)="onSelectionChange('fieldNumber')">Phone Number</mat-radio-button>
+            <mat-radio-button value="fieldLink" (change)="onSelectionChange('fieldLink')">Link</mat-radio-button>
+          </mat-radio-group>
+          <!-- <mat-form-field class="example-form-field" *ngIf="fieldType === 'fieldText'">
+            <mat-label>Field Name</mat-label>
+            <input matInput type="text" [(ngModel)]="text" 
+                  id="text"
+                  tabindex="1">
+            <button mat-button *ngIf="text" matSuffix mat-icon-button aria-label="Clear" (click)="text=''">
+              <mat-icon>close</mat-icon>
+            </button>
+          </mat-form-field>
+          <mat-form-field class="example-form-field" *ngIf="fieldType === 'fieldNumber'">
+            <mat-label>Phone Number</mat-label>
+            <input matInput type="text" [(ngModel)]="phone" 
+                  id="phone"
+                  tabindex="1">
+            <button mat-button *ngIf="phone" matSuffix mat-icon-button aria-label="Clear" (click)="phone=''">
+              <mat-icon>close</mat-icon>
+            </button>
+          </mat-form-field>
+          <mat-form-field class="example-form-field" *ngIf="fieldType === 'fieldLink'">
+            <mat-label>Link</mat-label>
+            <input matInput type="text" [(ngModel)]="link" 
+                  id="link"
+                  tabindex="1">
+            <button mat-button *ngIf="link" matSuffix mat-icon-button aria-label="Clear" (click)="link=''">
+              <mat-icon>close</mat-icon>
+            </button>
+          </mat-form-field> -->
+          <div class="button-group">
+            <button (click)="addItem()" class="close grey rounded" type="button">Confirm</button>
+            <button (click)="addNewField()" class="close grey rounded" type="button">Back</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="button-group">
+      <button [disabled]="userAddForm.invalid"
+              class="close blue rounded"
+              tabindex="0"
+              type="submit">
+        {{isUpdatingUser ? 'Update' : 'Save'}} Contact
+      </button>
+      <button (click)="backClicked()" class="close grey rounded" type="button">Back</button>
+    </div>
+  </form>
+</div>
